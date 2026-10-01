@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>COCODRONE</title>
+<meta name="description" content="">
+<meta name="theme-color" content="#453E38">
+<link rel="icon" href="data:,">
+<script>
+  /* 첫 페인트 전에 레이아웃 모드를 정한다: 900px 이하 또는 동작 줄이기 설정이면 일반 스크롤(flow) */
+  (function () {
+    var d = document.documentElement;
+    var flow = !window.matchMedia || window.matchMedia('(max-width: 900px), (prefers-reduced-motion: reduce)').matches;
+    d.className += (flow ? ' is-flow' : ' is-scenes') + ' is-loading';
+    setTimeout(function () { d.classList.remove('is-loading'); }, 4000);
+  })();
+</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== 고정 헤더 ===== -->
+<header class="hd" id="hd">
+  <a class="hd-logo en" href="#top" data-jump="intro" data-c="site.brand">COCODRONE</a>
+  <nav class="hd-nav" data-t-attr="aria-label:mainNav">
+    <a href="#comp" data-jump="comp" data-i18n="nav.competition"></a>
+    <a href="#products" data-jump="products" data-i18n="nav.products"></a>
+    <a href="#notice" data-jump="last" data-anchor="notice" data-i18n="nav.notice"></a>
+    <a href="#apply" data-jump="last" data-anchor="apply" data-i18n="nav.apply"></a>
+  </nav>
+  <div class="hd-right">
+    <div class="hd-lang" id="hdLang" role="group" data-t-attr="aria-label:lang"></div>
+    <a class="hd-store" data-store target="_blank" rel="noopener"><span data-i18n="nav.store"></span><span class="sr" data-t="newTab"></span></a>
+    <button class="hd-burger" id="burger" type="button" aria-expanded="false" aria-controls="mnav" data-i18n-attr="aria-label:nav.menu"><span></span><span></span></button>
+  </div>
+</header>
+<div class="mnav" id="mnav" hidden>
+  <nav data-t-attr="aria-label:mainNav">
+    <a href="#comp" data-jump="comp" data-i18n="nav.competition"></a>
+    <a href="#products" data-jump="products" data-i18n="nav.products"></a>
+    <a href="#notice" data-jump="last" data-anchor="notice" data-i18n="nav.notice"></a>
+    <a href="#apply" data-jump="last" data-anchor="apply" data-i18n="nav.apply"></a>
+    <a class="mnav-store" data-store target="_blank" rel="noopener"><span data-i18n="nav.store"></span><span class="sr" data-t="newTab"></span></a>
+  </nav>
+</div>
+
+<!-- ===== 우측 세로 인디케이터 ===== -->
+<nav class="ind" id="ind" data-t-attr="aria-label:sceneNav">
+  <p class="ind-label en" id="indLabel" aria-hidden="true">OPENING</p>
+  <ol class="ind-list" id="indList"></ol>
+</nav>
+
+<main class="stage" id="stage">
+
+  <!-- 0. 인트로 -->
+  <section class="scene sc-intro" id="top" data-sid="intro">
+    <div class="media in-media" aria-hidden="true">
+      <img alt="" data-asset="assets/img/a-hero.jpg">
+      <video class="in-vid" muted loop playsinline preload="auto" data-asset-video="assets/video/a-hero.mp4" data-asset-poster="assets/img/a-hero.jpg"></video>
+    </div>
+    <div class="in-shade" aria-hidden="true"></div>
+    <h1 class="in-copy">
+      <span class="line l1" data-c="site.slogan"></span>
+      <span class="line l2" data-c="competition.name"></span>
+    </h1>
+    <a class="in-hint en" href="#decl" data-next><span data-i18n="label.scroll"></span><i aria-hidden="true"></i></a>
+    <button class="in-btn" id="introBtn" type="button"><span class="ico" aria-hidden="true"></span></button>
+  </section>
+
+  <!-- 1. 브랜드 선언 -->
+  <section class="scene sc-decl" id="decl" data-sid="decl">
+    <div class="dc-bg" aria-hidden="true"><img alt="" data-asset="assets/img/a-hero.jpg"></div>
+    <div class="dc-shade" aria-hidden="true"></div>
+    <div class="dc-stack" id="dcStack" data-rv></div>
+  </section>
+
+  <!-- 2. Why -->
+  <section class="scene sc-why" id="why" data-sid="why" aria-labelledby="wyTitle">
+    <div class="wy-bg" aria-hidden="true"></div>
+    <svg class="wy-lines" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <path class="p1" pathLength="1" stroke-dasharray="1" d="M-60 770 C 210 630 430 880 720 720 S 1120 420 1510 520"/>
+      <path class="p2" pathLength="1" stroke-dasharray="1" transform="translate(0 112)" d="M820 960 C 870 780 1030 650 1150 600 C 1310 532 1372 372 1262 318 C 1150 264 1078 420 1188 486 C 1302 552 1424 452 1520 330"/>
+      <path class="p3" pathLength="1" stroke-dasharray="1" d="M930 110 C 1030 200 1220 236 1510 176"/>
+      <circle cx="720" cy="720" r="5"/>
+      <circle cx="1262" cy="430" r="4"/>
+    </svg>
+    <div class="wy-in" data-rv>
+      <h2 class="wy-title en" id="wyTitle" data-c="why.title"></h2>
+      <div class="wy-body" id="wyBody"></div>
+    </div>
+  </section>
+
+  <!-- 3~5. 스토리 장면은 app.js 가 stories 데이터로 여기 앞에 만든다 -->
+
+  <!-- 6. 대회 소개 -->
+  <section class="scene sc-comp" id="comp" data-sid="comp" aria-labelledby="cpEn">
+    <div class="cp-bg" aria-hidden="true"><img alt="" data-src-path="competition.video.poster"></div>
+    <div class="cp-shade" aria-hidden="true"></div>
+    <div class="cp-in" data-rv>
+      <p class="cp-eyebrow en" data-i18n="comp.eyebrow"></p>
+      <h2 class="cp-en en" id="cpEn"></h2>
+      <p class="cp-txt cp-name" data-c="competition.name"></p>
+      <p class="cp-txt cp-sum" data-c-html="competition.summary"></p>
+      <p class="cp-txt cp-cap" data-i18n="comp.infoTitle"></p>
+      <dl class="cp-info" id="cpInfo"></dl>
+      <p class="cp-sample" id="cpSample" data-i18n="label.sample"></p>
+    </div>
+  </section>
+
+  <!-- 7. 대회 홍보 영상 (2단계) -->
+  <section class="scene sc-x sc-film" id="film" data-sid="film" aria-labelledby="flTag">
+    <div class="x-bg" aria-hidden="true"><img alt="" data-src-path="competition.video.poster"></div>
+    <div class="x-frame" aria-hidden="true"></div>
+    <div class="x-media media" data-rv>
+      <img alt="" data-src-path="competition.video.poster">
+      <video muted loop playsinline preload="none" data-vid-path="competition.video.src" data-poster-path="competition.video.poster"></video>
+      <button class="x-hit" type="button" data-i18n-attr="aria-label:cta.watch"><span class="x-play" aria-hidden="true"></span></button>
+    </div>
+    <div class="x-scrim" aria-hidden="true"></div>
+    <div class="x-s0" data-rv>
+      <p class="x-lbl ai" data-i18n="comp.videoTitle"></p>
+      <h2 class="fl-tag ai" id="flTag" data-c-html="competition.tagline"></h2>
+      <p class="fl-watch ai"><span class="fl-watch-ico" aria-hidden="true"></span><span data-i18n="cta.watch"></span></p>
+    </div>
+    <div class="x-s1" data-rv>
+      <p class="x-lbl ai" data-i18n="comp.divisionTitle"></p>
+      <ul class="fl-divs" id="flDivs"></ul>
+      <div class="ai fl-cta"><a class="btn btn-coral" href="#apply" data-jump="last" data-anchor="apply" data-i18n="cta.applyShort"></a></div>
+    </div>
+  </section>
+
+  <!-- 8~11. 경험 장면은 app.js 가 experiences 데이터로 여기 앞에 만든다 -->
+
+  <!-- 12. 제품 -->
+  <section class="scene sc-prod" id="products" data-sid="products" aria-labelledby="pdTitle">
+    <div class="pd-in">
+      <div class="pd-head" data-rv>
+        <div class="pd-head-l">
+          <p class="pd-eyebrow en ai" data-i18n="products.eyebrow"></p>
+          <h2 class="pd-title ai" id="pdTitle" data-i18n="products.title"></h2>
+        </div>
+        <p class="pd-sub ai" data-i18n="products.sub"></p>
+      </div>
+      <ul class="pd-grid" id="pdGrid"></ul>
+      <div class="pd-btns" data-rv>
+        <button class="btn btn-line ai" id="btnAll" type="button" aria-haspopup="dialog" aria-controls="ov" data-i18n="cta.viewAll"></button>
+        <a class="btn btn-dark ai" data-store target="_blank" rel="noopener"><span data-i18n="cta.store"></span><span class="sr" data-t="newTab"></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. Promise -->
+  <section class="scene sc-promise" id="promise" data-sid="promise" aria-labelledby="prTitle">
+    <div class="pr-bg media" aria-hidden="true"><img alt="" data-asset="assets/img/a-promise.jpg"></div>
+    <div class="pr-shade" aria-hidden="true"></div>
+    <div class="pr-c" data-rv>
+      <p class="pr-eyebrow en ai">Our Promise</p>
+      <h2 class="pr-title ai" id="prTitle" data-c="site.tagline"></h2>
+      <div class="pr-btns ai">
+        <a class="btn btn-light" href="#apply" data-jump="last" data-anchor="apply" data-i18n="cta.apply"></a>
+        <a class="btn btn-glass" data-store target="_blank" rel="noopener"><span data-i18n="cta.store"></span><span class="sr" data-t="newTab"></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14. 마지막 장면 (문서형, 내부 세로 스크롤) -->
+  <section class="scene sc-last" id="join" data-sid="last" tabindex="-1" aria-labelledby="ntTitle">
+    <div class="ls-hero">
+      <img alt="" data-asset="assets/img/a-footer.jpg">
+      <div class="ls-hero-shade" aria-hidden="true"></div>
+      <div class="ls-hero-c">
+        <p class="ls-hero-en en" data-c="site.taglineEn"></p>
+        <p class="ls-hero-sub" data-c="competition.name"></p>
+      </div>
+    </div>
+
+    <div class="ls-sec ls-notice" id="notice">
+      <div class="ls-wrap">
+        <div class="ls-head">
+          <p class="ls-eyebrow en" data-i18n="notice.eyebrow"></p>
+          <h2 class="ls-title" id="ntTitle" data-i18n="notice.title"></h2>
+        </div>
+        <ul class="nt-list" id="ntList"></ul>
+      </div>
+    </div>
+
+    <div class="ls-sec ls-apply" id="apply">
+      <div class="ls-wrap ap-wrap">
+        <div class="ls-head ap-head">
+          <p class="ls-eyebrow en" data-i18n="form.eyebrow"></p>
+          <h2 class="ls-title" id="apTitle" data-i18n="form.title"></h2>
+          <p class="ap-lead" data-i18n="form.desc"></p>
+        </div>
+        <div class="ap-body">
+          <form class="ap-form" id="apForm" aria-labelledby="apTitle" novalidate>
+            <div class="ap-grid">
+              <div class="fld">
+                <label for="f-name"><span data-i18n="form.name"></span> <em class="req" aria-hidden="true">*</em></label>
+                <input id="f-name" name="name" type="text" autocomplete="name" aria-required="true">
+              </div>
+              <div class="fld">
+                <label for="f-org"><span data-i18n="form.org"></span> <small data-i18n="form.optional"></small></label>
+                <input id="f-org" name="org" type="text" autocomplete="organization">
+              </div>
+              <div class="fld">
+                <label for="f-phone"><span data-i18n="form.phone"></span> <em class="req" aria-hidden="true">*</em></label>
+                <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" aria-required="true">
+              </div>
+              <div class="fld">
+                <label for="f-email"><span data-i18n="form.email"></span> <em class="req" aria-hidden="true">*</em></label>
+                <input id="f-email" name="email" type="email" autocomplete="email" aria-required="true">
+              </div>
+              <div class="fld">
+                <label for="f-div"><span data-i18n="form.division"></span> <em class="req" aria-hidden="true">*</em></label>
+                <select id="f-div" name="division" aria-required="true"></select>
+              </div>
+              <div class="fld">
+                <label for="f-mem"><span data-i18n="form.members"></span></label>
+                <input id="f-mem" name="members" type="number" min="1" max="30" value="1" inputmode="numeric">
+              </div>
+              <div class="fld fld-wide">
+                <label for="f-msg"><span data-i18n="form.message"></span> <small data-i18n="form.optional"></small></label>
+                <textarea id="f-msg" name="message" rows="4"></textarea>
+              </div>
+            </div>
+            <div class="hp" aria-hidden="true">
+              <label for="f-web">website</label>
+              <input id="f-web" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <label class="agree"><input type="checkbox" name="agree" id="f-agree"><span data-i18n="form.agree"></span></label>
+            <p class="ap-err" id="apErr" role="alert"></p>
+            <button class="btn btn-coral ap-submit" type="submit" data-i18n="form.submit"></button>
+          </form>
+          <div class="ap-done" id="apDone" tabindex="-1" hidden>
+            <p class="ap-done-t" data-i18n="form.successTitle"></p>
+            <p class="ap-no"><span data-i18n="form.entryNo"></span><strong class="en" id="apNo"></strong></p>
+            <p class="ap-done-d" data-i18n="form.successDesc"></p>
+            <button class="btn btn-line" id="apAgain" type="button" data-i18n="form.again"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lk">
+      <a class="lk-col" data-store target="_blank" rel="noopener">
+        <span class="lk-k en">Online Store</span>
+        <strong class="lk-t" data-i18n="nav.store"></strong>
+        <span class="lk-m"><span data-i18n="cta.explore"></span><span class="arr" aria-hidden="true">&rarr;</span></span>
+        <span class="sr" data-t="newTab"></span>
+      </a>
+      <span class="lk-line" aria-hidden="true"></span>
+      <a class="lk-col" href="#top" data-jump="intro">
+        <span class="lk-k en">Opening</span>
+        <strong class="lk-t" data-t="toStart"></strong>
+        <span class="lk-m"><span class="en" data-c="site.taglineEn"></span><span class="arr arr-up" aria-hidden="true">&uarr;</span></span>
+      </a>
+    </div>
+
+    <footer class="ft">
+      <div class="ft-in">
+        <div class="ft-main">
+          <p class="ft-logo en" data-c="site.brand"></p>
+          <p class="ft-co" data-i18n="footer.company"></p>
+          <ul class="ft-info">
+            <li><b data-i18n="footer.bizNo"></b><span class="en" data-c="site.bizNo"></span></li>
+            <li><b data-i18n="footer.office"></b><span data-c="site.address"></span></li>
+            <li><b data-i18n="footer.contact"></b><a class="en" id="ftTel"></a><span class="dot" aria-hidden="true">·</span><a class="en" id="ftMail"></a></li>
+          </ul>
+        </div>
+        <div class="ft-side">
+          <a class="ft-store" data-store target="_blank" rel="noopener"><span data-i18n="cta.store"></span><span class="sr" data-t="newTab"></span></a>
+        </div>
+        <p class="ft-demo" data-i18n="footer.demo"></p>
+        <p class="ft-copy en" data-i18n="footer.rights"></p>
+      </div>
+    </footer>
+  </section>
+</main>
+
+<!-- ===== 전체 제품 오버레이 ===== -->
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="ovTitle" hidden>
+  <div class="ov-panel" id="ovPanel">
+    <div class="ov-head">
+      <div>
+        <p class="ov-eyebrow en" data-i18n="products.eyebrow"></p>
+        <h2 class="ov-title" id="ovTitle" data-i18n="cta.viewAll"></h2>
+      </div>
+      <button class="ov-close" id="ovClose" type="button" data-i18n-attr="aria-label:cta.close"><span aria-hidden="true"></span></button>
+    </div>
+    <ul class="ov-grid" id="ovGrid"></ul>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js"></script>
+<script src="../shared/coco-data.js"></script>
+<script src="../shared/coco-core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

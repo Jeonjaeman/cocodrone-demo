@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2714%27 fill=%27%23e23b2e%27/%3E%3Ccircle cx=%2711%27 cy=%2713%27 r=%272.4%27 fill=%27%231c1c1c%27/%3E%3Ccircle cx=%2721%27 cy=%2713%27 r=%272.4%27 fill=%27%231c1c1c%27/%3E%3Ccircle cx=%2716%27 cy=%2721%27 r=%272.4%27 fill=%27%231c1c1c%27/%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COCODRONE</title>
+<meta name="description" content="">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.2.10/swiper-bundle.min.css">
+<link rel="stylesheet" href="style.css">
+<script src="../shared/coco-data.js"></script>
+<script src="../shared/coco-core.js"></script>
+<script>
+  /* 일본어 폰트 로드 + 첫 방문 인트로 여부(24시간 1회) 결정 */
+  (function () {
+    var d = document.documentElement;
+    if (window.Coco && window.Coco.lang === 'ja') {
+      ['https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-jp-dynamic-subset.min.css',
+       'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap'].forEach(function (h) {
+        var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = h; document.head.appendChild(l);
+      });
+    }
+    var q = new URLSearchParams(location.search), show = false;
+    if (q.get('nointro') !== '1' && !q.get('goto') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var at = 0;
+      try { at = Number(localStorage.getItem('cocoB.introAt')) || 0; } catch (e) { at = 0; }
+      show = Date.now() - at > 864e5;
+    }
+    if (show) d.classList.add('has-intro');
+    if (q.get('goto')) d.classList.add('is-goto'); /* 디버그 진입: CSS 전환을 끄고 완료 상태로 */
+  })();
+</script>
+</head>
+<body>
+<a class="skip" href="#about" data-b="b.skip"></a>
+
+<!-- 0c 인트로 커튼 -->
+<div id="intro" class="intro" aria-hidden="true">
+  <div class="vertical left"></div>
+  <div class="vertical right"></div>
+  <div class="text-wrap">
+    <p class="intro-logo">COCODRONE</p>
+    <p class="intro-copy" data-c="site.slogan"></p>
+  </div>
+</div>
+
+<!-- 0d 헤더 -->
+<header id="header" class="header">
+  <div class="header-inner">
+    <h1 class="logo"><a href="#visual">COCODRONE</a></h1>
+    <nav class="gnb" data-b-attr="aria-label:b.gnb">
+      <ul>
+        <li><a href="#competition" data-i18n="nav.competition"></a></li>
+        <li><a href="#film" data-i18n="nav.video"></a></li>
+        <li><a href="#products" data-i18n="nav.products"></a></li>
+        <li><a href="#notice" data-i18n="nav.notice"></a></li>
+        <li><a href="#apply" data-i18n="nav.apply"></a></li>
+      </ul>
+    </nav>
+    <div class="header-util">
+      <div class="lang-pill" role="group" data-b-attr="aria-label:b.lang"></div>
+      <a class="store-pill" data-store href="#"><span data-i18n="nav.store"></span><span class="sr-only" data-b="b.newTab"></span></a>
+      <button type="button" class="ham" aria-expanded="false" aria-controls="menu" data-i18n-attr="aria-label:nav.menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- 0e 풀스크린 메뉴 -->
+<div id="menu" class="mobile-wrap" aria-hidden="true">
+  <button type="button" class="menu-close" data-i18n-attr="aria-label:cta.close"><span></span><span></span></button>
+  <div class="m-inner">
+    <nav class="m-gnb" data-b-attr="aria-label:b.gnb">
+      <ol>
+        <li><a href="#competition"><em>01</em><span data-i18n="nav.competition"></span></a></li>
+        <li><a href="#film"><em>02</em><span data-i18n="nav.video"></span></a></li>
+        <li><a href="#products"><em>03</em><span data-i18n="nav.products"></span></a></li>
+        <li><a href="#notice"><em>04</em><span data-i18n="nav.notice"></span></a></li>
+        <li><a href="#apply"><em>05</em><span data-i18n="nav.apply"></span></a></li>
+      </ol>
+    </nav>
+    <div class="m-util">
+      <div class="m-lang" role="group" data-b-attr="aria-label:b.lang"></div>
+      <a class="btn-sig" data-store href="#"><span data-i18n="cta.store"></span><i class="dot" aria-hidden="true"></i></a>
+      <p class="m-contact"><span data-site="email"></span><span data-site="tel"></span></p>
+    </div>
+  </div>
+</div>
+
+<main id="wrap">
+
+  <!-- 1 히어로 -->
+  <section id="visual" class="visual">
+    <div class="swiper visual-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="v-media" data-src="assets/video/b-hero1.mp4" data-poster="assets/img/b-hero1.jpg">
+            <video muted playsinline loop preload="auto" aria-hidden="true"></video>
+          </div>
+          <div class="v-filter"></div>
+        </div>
+        <div class="swiper-slide">
+          <div class="v-media" data-src-from="competition" data-src="assets/video/comp-promo.mp4" data-poster="assets/img/a-compete.jpg">
+            <video muted playsinline loop preload="metadata" aria-hidden="true"></video>
+          </div>
+          <div class="v-filter"></div>
+        </div>
+      </div>
+    </div>
+    <div class="v-ui">
+      <div class="area-box">
+        <div class="v-left">
+          <div class="v-counter">
+            <button type="button" class="v-arrow prev" data-b-attr="aria-label:b.prev"></button>
+            <span class="v-cur">01</span>
+            <span class="v-line"><i></i></span>
+            <span class="v-tot">02</span>
+            <button type="button" class="v-arrow next" data-b-attr="aria-label:b.next"></button>
+          </div>
+          <div class="v-texts">
+            <div class="v-text">
+              <h2 lang="en">Built by Hand, Made to Fly</h2>
+              <p data-c="site.slogan"></p>
+            </div>
+            <div class="v-text">
+              <h2 lang="en">Paper Drone Challenge</h2>
+              <p data-c="competition.tagline"></p>
+            </div>
+          </div>
+        </div>
+        <a class="v-scroll" href="#about">
+          <span class="v-scroll-txt" data-i18n="label.scroll"></span>
+          <i class="v-scroll-bar" aria-hidden="true"><b></b></i>
+        </a>
+      </div>
+    </div>
+    <div class="v-bar" aria-hidden="true"><div></div></div>
+  </section>
+
+  <!-- 2 About -->
+  <section id="about" class="main-about">
+    <div class="about-inner">
+      <p class="small-txt" lang="en">About Us</p>
+      <h2 class="about-tit"></h2>
+    </div>
+    <div id="who" class="who-we-are">
+      <div class="who-inner">
+        <p class="info-line"></p>
+        <div class="btn-box">
+          <a class="btn-sig" href="#competition"><span data-i18n="cta.more"></span><i class="dot" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 대회 (다크) -->
+  <section id="competition" class="section-04">
+    <div class="area-box">
+      <div class="g-top">
+        <div class="g-tit">
+          <p class="small-txt" data-i18n="comp.eyebrow"></p>
+          <h2 class="g-title"></h2>
+        </div>
+        <div class="btn-box g-btn">
+          <a class="btn-sig" href="#apply"><span data-i18n="cta.applyShort"></span><i class="dot" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="g-body">
+        <ul class="g-stats"></ul>
+        <div class="g-map"></div>
+      </div>
+      <div class="g-detail">
+        <div class="g-summary-wrap">
+          <p class="g-summary"></p>
+          <span class="g-sample" hidden></span>
+        </div>
+        <div class="g-table"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 대회 홍보 영상 (pin + scrub) -->
+  <section id="film" class="section-05">
+    <div class="floor">
+      <video muted playsinline loop preload="metadata" aria-hidden="true"></video>
+      <div class="floor-dim"></div>
+    </div>
+    <div class="biz-title">
+      <small data-i18n="comp.videoTitle"></small>
+      <h2></h2>
+    </div>
+    <button type="button" class="film-toggle" aria-pressed="false"><i aria-hidden="true"></i></button>
+  </section>
+
+  <!-- 5 3분할 패널 -->
+  <section id="programs" class="work">
+    <ul></ul>
+  </section>
+
+  <!-- 제품 -->
+  <section id="products" class="products">
+    <div class="area-box">
+      <div class="sec-head">
+        <p class="sub_title" data-i18n="products.eyebrow"></p>
+        <h2 class="b-title" data-i18n="products.title"></h2>
+        <p class="sec-desc" data-i18n="products.sub"></p>
+      </div>
+      <div class="chips" role="group" data-b-attr="aria-label:b.filter"></div>
+      <ul class="p-grid"></ul>
+      <div class="p-more">
+        <a class="cta-btn" data-store href="#"><span data-i18n="cta.store"></span><span class="sr-only" data-b="b.newTab"></span><i aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 라인업 마퀴 -->
+  <section id="lineup" class="section-06">
+    <div class="sec-head center area-box">
+      <p class="sub_title" lang="en">Lineup</p>
+      <h2 class="b-title l-title"></h2>
+    </div>
+    <div class="marquee" aria-hidden="true">
+      <div class="track"></div>
+      <div class="track reverse"></div>
+    </div>
+  </section>
+
+  <!-- 공지 -->
+  <section id="notice" class="notice">
+    <div class="area-box">
+      <div class="title">
+        <p class="txt" data-i18n="notice.eyebrow"></p>
+        <h2 class="tit" data-i18n="notice.title"></h2>
+      </div>
+      <ul class="nt-list"></ul>
+    </div>
+  </section>
+
+  <!-- 참가 신청 -->
+  <section id="apply" class="apply">
+    <div class="area-box">
+      <div class="ap-grid">
+        <div class="ap-info">
+          <div class="title">
+            <p class="txt" data-i18n="form.eyebrow"></p>
+            <h2 class="tit" data-i18n="form.title"></h2>
+          </div>
+          <p class="ap-desc" data-i18n="form.desc"></p>
+          <dl class="ap-contact">
+            <div><dt lang="en">EMAIL</dt><dd><a data-site="email" href="#"></a></dd></div>
+            <div><dt lang="en">TEL</dt><dd><a data-site="tel" href="#"></a></dd></div>
+            <div><dt data-i18n="footer.office"></dt><dd data-c="site.address"></dd></div>
+          </dl>
+        </div>
+        <div class="ap-form-wrap">
+          <form class="ap-form" autocomplete="on">
+            <fieldset class="f-row f-division">
+              <legend><span data-i18n="form.division"></span><em class="req" aria-hidden="true">*</em></legend>
+              <div class="f-radios"></div>
+            </fieldset>
+            <div class="f-grid">
+              <div class="f-row">
+                <label for="f-name"><span data-i18n="form.name"></span><em class="req" aria-hidden="true">*</em></label>
+                <input id="f-name" name="name" type="text" autocomplete="name" aria-required="true">
+              </div>
+              <div class="f-row">
+                <label for="f-org"><span data-i18n="form.org"></span> <small>(<span data-i18n="form.optional"></span>)</small></label>
+                <input id="f-org" name="org" type="text" autocomplete="organization">
+              </div>
+              <div class="f-row">
+                <label for="f-phone"><span data-i18n="form.phone"></span><em class="req" aria-hidden="true">*</em></label>
+                <input id="f-phone" name="phone" type="tel" autocomplete="tel" aria-required="true">
+              </div>
+              <div class="f-row">
+                <label for="f-email"><span data-i18n="form.email"></span><em class="req" aria-hidden="true">*</em></label>
+                <input id="f-email" name="email" type="email" autocomplete="email" aria-required="true">
+              </div>
+              <div class="f-row">
+                <label for="f-members" data-i18n="form.members"></label>
+                <input id="f-members" name="members" type="number" min="1" max="50" value="1" inputmode="numeric">
+              </div>
+            </div>
+            <div class="f-row">
+              <label for="f-message"><span data-i18n="form.message"></span> <small>(<span data-i18n="form.optional"></span>)</small></label>
+              <textarea id="f-message" name="message" rows="4"></textarea>
+            </div>
+            <div class="f-hp" aria-hidden="true">
+              <label for="f-website">website</label>
+              <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <label class="f-agree">
+              <input type="checkbox" name="agree">
+              <span class="f-check" aria-hidden="true"></span>
+              <span data-i18n="form.agree"></span>
+            </label>
+            <p class="f-msg" role="alert" aria-live="assertive"></p>
+            <button type="submit" class="f-submit"><span data-i18n="form.submit"></span><i aria-hidden="true"></i></button>
+          </form>
+          <div class="ap-done" hidden tabindex="-1">
+            <p class="ap-done-tit" data-i18n="form.successTitle"></p>
+            <p class="ap-done-desc" data-i18n="form.successDesc"></p>
+            <dl class="ap-no"><dt data-i18n="form.entryNo"></dt><dd></dd></dl>
+            <button type="button" class="cta-btn ap-again" data-i18n="form.again"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 Outro 2분할 CTA -->
+  <section id="outro" class="section-outro">
+    <div class="outro-wrap">
+      <a class="outro-col" href="#apply">
+        <span class="o-tt">
+          <strong class="o-title" data-i18n="nav.apply"></strong>
+          <span class="o-text" data-b="b.outroApply"></span>
+        </span>
+        <span class="o-btn"><span class="btn-sig as-span"><span data-i18n="cta.apply"></span><i class="dot" aria-hidden="true"></i></span></span>
+      </a>
+      <a class="outro-col" data-store href="#">
+        <span class="o-tt">
+          <strong class="o-title" data-i18n="nav.store"></strong>
+          <span class="o-text" data-b="b.outroStore"></span>
+        </span>
+        <span class="o-btn"><span class="btn-sig as-span"><span data-i18n="cta.store"></span><i class="dot" aria-hidden="true"></i></span></span>
+        <span class="sr-only" data-b="b.newTab"></span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<!-- 8 푸터 -->
+<footer id="footer" class="footer">
+  <div class="area-box">
+    <p class="f-title" lang="en" data-c="site.taglineEn"></p>
+    <div class="f-cols">
+      <div class="f-col">
+        <h3 class="f-col-title" data-b="b.footInfo"></h3>
+        <p class="f-company" data-i18n="footer.company"></p>
+        <dl>
+          <div><dt data-i18n="footer.bizNo"></dt><dd data-site="bizNo"></dd></div>
+          <div><dt data-i18n="footer.office"></dt><dd data-c="site.address"></dd></div>
+        </dl>
+      </div>
+      <div class="f-col">
+        <h3 class="f-col-title" data-i18n="footer.contact"></h3>
+        <dl>
+          <div><dt lang="en">TEL</dt><dd><a data-site="tel" href="#"></a></dd></div>
+          <div><dt lang="en">EMAIL</dt><dd><a data-site="email" href="#"></a></dd></div>
+        </dl>
+      </div>
+      <div class="f-col">
+        <h3 class="f-col-title" data-b="b.footLinks"></h3>
+        <ul class="f-links">
+          <li><a href="#competition" data-i18n="nav.competition"></a></li>
+          <li><a href="#film" data-i18n="nav.video"></a></li>
+          <li><a href="#products" data-i18n="nav.products"></a></li>
+          <li><a href="#notice" data-i18n="nav.notice"></a></li>
+          <li><a href="#apply" data-i18n="nav.apply"></a></li>
+          <li><a data-store href="#"><span data-i18n="nav.store"></span><span class="sr-only" data-b="b.newTab"></span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <p class="f-demo" data-i18n="footer.demo"></p>
+      <p class="f-copy" data-i18n="footer.rights"></p>
+    </div>
+  </div>
+</footer>
+
+<button type="button" id="topBtn" class="top-btn" data-i18n-attr="aria-label:cta.top"><i aria-hidden="true"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11.2.10/swiper-bundle.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
