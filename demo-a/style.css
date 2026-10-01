@@ -441,15 +441,26 @@ html.at-last .ind, html.is-flow .ind { opacity: 0; visibility: hidden; }
   content: ""; position: absolute; left: 50%; top: 50%; margin: -5px 0 0 -2.5px;
   border-left: 8px solid #fff; border-top: 5px solid transparent; border-bottom: 5px solid transparent;
 }
-.fl-divs { margin-top: clamp(12px, 2vh, 20px); }
+.fl-divs { margin-top: clamp(8px, 1.3vh, 14px); }
 .fl-divs li {
-  display: grid; gap: 4px; padding: clamp(11px, 1.8vh, 16px) 2px;
+  display: grid; gap: 2px; padding: clamp(7px, 1.15vh, 12px) 2px;
   border-bottom: 1px solid rgba(255, 255, 255, .18);
 }
-.fl-divs li:first-child { border-top: 1px solid rgba(255, 255, 255, .3); }
-.fl-divs strong { font-size: clamp(16px, 1.3vw, 20px); font-weight: 700; letter-spacing: -.01em; }
-.fl-divs span { font-size: 14px; line-height: 1.6; color: rgba(236, 231, 225, .85); }
-.fl-cta { margin-top: clamp(18px, 3.2vh, 30px); }
+.fl-divs li:first-child, .fl-sch li:first-child { border-top: 1px solid rgba(255, 255, 255, .3); }
+.fl-divs strong { font-size: clamp(15px, min(1.15vw, 2vh), 18px); font-weight: 700; letter-spacing: -.01em; line-height: 1.45; }
+.fl-divs span { font-size: clamp(12.5px, min(.95vw, 1.6vh), 14px); line-height: 1.5; color: rgba(236, 231, 225, .85); }
+/* 진행 순서: 얇은 구분선, 시간은 Inter 굵게, 제목은 본문 크기 */
+.fl-sch-lbl { margin-top: clamp(14px, 2.4vh, 24px); }
+.fl-sch-lbl[hidden] { display: none; }
+.fl-sch { margin-top: clamp(8px, 1.3vh, 14px); }
+.fl-sch li {
+  display: grid; grid-template-columns: 3.6em minmax(0, 1fr); gap: 14px; align-items: baseline;
+  padding: clamp(5px, .85vh, 9px) 2px; border-bottom: 1px solid rgba(255, 255, 255, .18);
+  font-size: clamp(14px, min(1.12vw, 1.95vh), 17px); line-height: 1.45;
+}
+.fl-sch time { font-weight: 700; letter-spacing: .01em; color: var(--coral-l); }
+.fl-sch span { color: var(--cream); }
+.fl-cta { margin-top: clamp(14px, 2.6vh, 26px); }
 
 /* ===== 12. 제품 ===== */
 .sc-prod { background: var(--blush); color: var(--brown); }

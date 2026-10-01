@@ -496,7 +496,8 @@
     setupVideo(floor, film.video, v.src || 'assets/video/comp-promo.mp4', v.poster || 'assets/img/a-compete.jpg');
     /* 문장 부호 단위로 나눠 순서대로 켠다 */
     var tag = C.tr(comp.tagline);
-    var parts = tag.split(/(?<=[,.、。!?！？])\s*/).filter(Boolean);
+    /* lookbehind 정규식은 구형 Safari에서 스크립트 전체가 파싱 실패하므로 쓰지 않는다 */
+    var parts = tag.replace(/([,.、。!?！？])\s*/g, '$1\n').split('\n').filter(Boolean);
     $('.biz-title h2', sec).innerHTML = parts.map(function (p) { return '<span>' + esc(p) + '</span>'; }).join(' ');
 
     var btn = $('.film-toggle', sec);

@@ -279,6 +279,11 @@
     $('#flDivs').innerHTML = (comp.divisions || []).map(function (v) {
       return '<li class="ai"><strong>' + esc(C.tr(v.name)) + '</strong><span>' + esc(C.tr(v.desc)) + '</span></li>';
     }).join('');
+    var sch = comp.schedule || [];
+    $('#flSch').innerHTML = sch.map(function (r) {
+      return '<li class="ai"><time class="en">' + esc(C.tr(r.time)) + '</time><span>' + esc(C.tr(r.title)) + '</span></li>';
+    }).join('');
+    $('#flSchLbl').hidden = !sch.length;
     renderProducts();
     renderNotices();
     C.fillDivisionSelect($('#f-div'));
@@ -578,7 +583,7 @@
         tl.fromTo(p.hit, { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.3, ease: 'power2.in' }, 0);
         tl.fromTo(p.media, thumb(), assign({ duration: 1.1, ease: 'power3.inOut' }, FULL), 0.2);
         tl.fromTo(p.scrim, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.8, ease: 'sine.out' }, 0.95);
-        tin(tl, p.s1, 1.05, { s: 0.07 });
+        tin(tl, p.s1, 1.05, { s: 0.05 });
         return tl;
       },
       /* 썸네일 단계에서는 정지, 확장 시 처음부터 재생, 벗어나면 정지 */
